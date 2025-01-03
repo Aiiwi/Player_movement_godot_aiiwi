@@ -1,10 +1,10 @@
 extends CharacterBody3D
 
 @export_group("Camera")
-@export_range(0.0,1.0) var mouse_sensitivity := 0.2
+@export_range(0.0,1.0) var mouse_sensitivity := 0.2 #Sensibilty 
 
 @export_group("Player_Movement")
-@export var move_speed := 5.0
+@export var move_speed := 5.0 #Player normal speed
 @export var acceleration := 20.0
 
 @onready var pause_ui= $CameraPoint/UI/Pause_UI as CanvasLayer
@@ -13,8 +13,8 @@ extends CharacterBody3D
 var _camera_input_direction := Vector2.ZERO
 
 func _ready() -> void:
-	pause_ui.visible = false
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	pause_ui.visible = false #project things where on scene pause ui not visible
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED #capturing mouse in window
 
 func _input(event: InputEvent):
 	
@@ -32,7 +32,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _physics_process(delta: float) -> void:
 	_camera.rotation.x += -_camera_input_direction.y * delta
-	_camera.rotation.x = clamp(_camera.rotation.x, -PI/6.5,PI/2.5) #Contiene la telecamera nel suo movimento
+	_camera.rotation.x = clamp(_camera.rotation.x, -PI/6.5,PI/2.5) #Contains camera in range of looking down or up
 	_camera.rotation.y -= _camera_input_direction.x * delta
 	
 	_camera_input_direction = Vector2.ZERO
