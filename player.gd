@@ -4,8 +4,8 @@ extends CharacterBody3D
  #mouse sens
 
 @export_group("Player_Movement")
-@export var move_speed :float = 5.0 #player normal speed
-@export var acceleration :float = 20.0
+@export var move_speed :float = 5.0 
+@export var acceleration :float = 20.0 
 
 @onready var pause_ui:CanvasLayer = $CameraPoint/UI/Pause_UI
 @onready var _camera:Camera3D = %CameraPoint
@@ -42,7 +42,7 @@ func _physics_process(delta: float) -> void:
 	var raw_input := Input.get_vector("MOVE_LEFT","MOVE_RIGHT","MOVE_FORWARD","MOVE_BACK") #hotkeys wasd
 	
 	if raw_input && is_on_floor():
-		headbob.play("head_bobbing")
+		headbob.play("head_bobbing")#using a animation player includes even step sounds lazy solution
 	else:
 		headbob.pause()
 	
